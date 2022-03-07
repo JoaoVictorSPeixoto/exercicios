@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>medias</title>
+</head>
+<body>
+   
+    <header>
+        <h1>Medias</h1>
+    </header>
+
+    <main>
+        Notas: <input type="number" name="notas" id="notas">
+        <button id ='enviar' onclick="enviar()">enviar</button>
+        <button id = 'calcular' onclick="calcular()">calcular</button>
+        <button onclick="limpar()">limpar</button>
+
+        <div id = 'res'></div>
+    </main>
+
+    <script>
+        let nota = document.querySelector('#notas')
+        let valores = []
+        let resposta = document.getElementById('res')
+        function enviar(){
+            if(nota.value.length != 0 ){
+                resposta.innerHTML = ''
+                valores.push(nota.value)
+                resposta.innerHTML += valores + ' ';
+                nota.value = ''
+                nota.focus()
+            }else{
+                window.alert('por favor digite um numero')
+            }
+           
+        }
+
+
+        function calcular(){
+            if(valores.length != 0){
+                let soma = 0
+                let media
+                for(let i = 0; i < valores.length; i++){
+                    soma = soma + Number(valores[i])
+                }
+                media = soma / valores.length
+                resposta.innerHTML += `<br>A Soma dos valores digitados é: ${soma}`
+                resposta.innerHTML += `<br>A Media dos valores digitados é: ${media}`
+            }else{
+                alert('insira um valor para podemos calcular')
+            }
+            
+
+           
+        }
+
+        function limpar(){
+            resposta.innerHTML = ''
+            valores = [];
+            nota.value = ''
+            nota.focus()
+        }
+
+
+        
+        
+    </script>
+</body>
+</html>
